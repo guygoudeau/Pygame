@@ -1,1 +1,1 @@
-start C:\Python27\python -i %~dp0\test.py
+start C:\Python27\python -i %~dp0\TestAstars.py

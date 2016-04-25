@@ -1,10 +1,6 @@
-import node
-from node import *
-import pygame
-from pygame.locals import *
+import pygame as gfx
 
-pygame.init()
-
+black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
 green = (0, 255, 0)
@@ -27,7 +23,7 @@ class Node:
 
 	def draw(self, screen, color):
 		margin = self.margin
-		color = (0, 0, 255) if (self.walkable) else (255,0,0)
+		color = white if (self.walkable) else red
 		gfx.draw.rect(screen, color, (self.left , self.top, self.width, self.height))
 		
 	def setWalk(self, walkable):
@@ -58,7 +54,7 @@ class Astar:
 				lowestF = node.f
 				nodeWithLowestF = node
 		return nodeWithLowestF
-
+'''
 	TODO.Add(start)
 	while (!TODO.IsEmpty())	// While there are squares to check
 	{
@@ -98,3 +94,4 @@ class Astar:
 		}
 	}
 	return false; // Failure
+'''

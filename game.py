@@ -10,13 +10,12 @@ def main():
 			n = Node(x, y)
 			#x goes right
 			#y goes down
-			unwalkable = True if (x >= 5 and x <= 6 and y >= 5 and y <= 8) else False
+			unwalkable = True if (x >= 1 and x <= 8 and y >= 1 and y <= 8) else False
 			print("x =:{mx} y=: {my} | pos =: {position}".format(mx = x, my = y, position = n.pos))
 			
 			n.setWalk(unwalkable)
 			searchSpace.append(n)
 			
-
 	# Initialize pygame
 	pygame.init()
 
@@ -33,8 +32,6 @@ def main():
 	# Used to manage how fast the screen updates
 	clock = pygame.time.Clock()
 
-
-
 	# -------- Main Program Loop -----------
 	while not done:
 		for event in pygame.event.get():  # User did something
@@ -42,10 +39,10 @@ def main():
 				done = True	 # Flag that we are done so we exit this loop
 
 		# Set the screen background
-		screen.fill((0,0,0))
+		screen.fill(black)
 
 		for i in searchSpace:
-			i.draw(screen, (255,255,255))
+			i.draw(screen, white)
 
 		# Limit to 60 frames per second
 		clock.tick(60)
@@ -56,3 +53,5 @@ def main():
 	# Be IDLE friendly. If you forget this line, the program will 'hang'
 	# on exit.
 	pygame.quit()
+
+main()

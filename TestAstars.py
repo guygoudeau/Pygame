@@ -24,6 +24,9 @@ def main():
 	pygame.display.set_caption("Astar") # Set title of screen
 	done = False # Loop until the user clicks the close button.
 	clock = pygame.time.Clock() # Used to manage how fast the screen updates
+	
+	As = AStar(searchSpace, start, goal)
+	As.init_grid()
 
 	# -------- Main Program Loop -----------
 	while not done:
@@ -32,9 +35,11 @@ def main():
 				done = True	 # Flag that we are done so we exit this loop
 
 		screen.fill(black) # Set the screen background
-
+		
 		for i in searchSpace:
 			i.draw(screen, white)
+			
+		As.process()
 
 		clock.tick(60) # Limit to 60 frames per second
 
