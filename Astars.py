@@ -5,6 +5,7 @@ white = (255, 255, 255)
 blue = (0, 0, 255)
 green = (0, 255, 0)
 red = (255, 0, 0)
+purple = (160, 32, 240)
 
 class Node(object):
 	def __init__(self, x, y, reachable):
@@ -21,6 +22,7 @@ class Node(object):
 		self.margin = 5
 		self.left = (self.margin + self.width) *  x + self.margin
 		self.top = (self.margin + self.height) *  y + self.margin
+		self.center = (self.left + (self.width/2)), (self.top + (self.height/2))
 		self.pos = (x, self.height - y)
 		self.IsStart = False
 		self.IsGoal = False
@@ -87,7 +89,9 @@ class AStar(object):
 				nodes.append(self.get_node(node.x, node.y+1))
 				
 			if node.x < self.grid_width-1 and node.y > 0:
-				nodes.append(self.get_node(node.x-1,node.y+1))
+				nodes.append(self.get_node(node.x-1,node.y+1)) # up and right
+			if node.x < self.grid_width-1 and node.y < self.grid_height-1:
+				nodes.append(self.get_node(node.x+1,node.y+1)) # down and right
 			return nodes
 		
 	def print_path(self): # print a path if found
@@ -99,7 +103,7 @@ class AStar(object):
 	def draw_path(self, screen):
 		n = self.goal
 		while n.parent != None:
-			gfx.draw.line(screen, red, [n.left,n.top], [n.parent.left,n.parent.top], 5)
+			gfx.draw.line(screen, purple, n.center, n.parent.center, 5)
 			n = n.parent
 			
 	def update_node(self, adj, node): # Calculate G, H and F score and set parent node
